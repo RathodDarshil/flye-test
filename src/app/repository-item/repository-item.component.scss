@@ -1,0 +1,36 @@
+.repository-item {
+  border: 1px solid #3498db; 
+  padding: 4px;
+  margin-bottom: 4px;
+}
+
+:host {
+  display: block;
+  margin: 5px;
+}
+
+h3 {
+  color: black;
+}
+
+p {
+  color: gray-700;
+}
+
+.details {
+  margin-top: 4px;
+}
+
+button {
+  background-color: blue-500;
+  color: white;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+  background-color: blue-700;
+}

@@ -1,0 +1,9 @@
+<div>
+    <ul>
+      <li *ngFor="let repository of repositories">
+        <app-repository-item [repository]="repository"></app-repository-item>
+        <app-skeleton-loader *ngIf="isLoading"></app-skeleton-loader>
+      </li>
+    </ul>
+  </div>
+  
