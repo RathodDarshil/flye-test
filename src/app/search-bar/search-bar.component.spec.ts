@@ -22,11 +22,4 @@ describe('SearchBarComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-// function beforeEach(arg0: () => Promise<void>) {
-//   throw new Error('Function not implemented.');
-// }
-
-// function expect(component: SearchBarComponent) {
-//   throw new Error('Function not implemented.');
-// }
 

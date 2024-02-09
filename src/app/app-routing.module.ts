@@ -6,9 +6,16 @@ import { RepositoryItemComponent } from './repository-item/repository-item.compo
 import { SkeletonLoaderComponent } from './skeleton-loader/skeleton-loader.component';
 
 const routes: Routes = [
-  { path: 'search', component: SearchBarComponent },
-  { path: 'repositories', component: RepositoryListComponent },
-  { path: 'repository/:id', component: RepositoryItemComponent },
+  { path: '', redirectTo: '/search', pathMatch: 'full' },
+  {
+    path: 'search',
+    component: SearchBarComponent,
+    children: [
+      { path: '', redirectTo: 'repositories', pathMatch: 'full' },
+      { path: 'repositories', component: RepositoryListComponent },
+      { path: 'repository/:id', component: RepositoryItemComponent },
+    ],
+  },
 ];
 
 @NgModule({

@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../services/api.service';
-// import { RepositoryItemComponent } from './repository-item/repository-item.component';
-// import { SkeletonLoaderComponent } from '../skeleton-loader/skeleton-loader.component';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-repository-list',
@@ -11,19 +10,29 @@ import { ApiService } from '../services/api.service';
 export class RepositoryListComponent {
   repositories: any[] = [];
   isLoading: boolean = true;
+  userNotFound: boolean=false;
 
-constructor(private apiService: ApiService) {}
+  constructor(
+    private apiService: ApiService,
+    private route: ActivatedRoute
+  ) {}
 
 ngOnInit() {
-  this.apiService.getRepositories().subscribe({
+  this.route.params.subscribe(params => {
+  const githubUsername = params['username'];
+
+  this.apiService.getRepositories(githubUsername).subscribe({
     next: (data: any) => {
       this.repositories = data;
       this.isLoading = false;
+      this.userNotFound = data.length === 0;
     },
     error: (error: any) => {
       console.error(error);
       this.isLoading = false;
+      this.userNotFound = true; 
     }
   });
+});
 }
 }

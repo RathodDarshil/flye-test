@@ -1,6 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+
 import "./search-bar.component.scss";
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-search-bar',
@@ -9,10 +10,17 @@ import "./search-bar.component.scss";
 })
 
 export class SearchBarComponent {
-    username: string = '';
-  
     @Output() searchEvent = new EventEmitter<string>();
-searchBar: any;
+
+    username: string = '';
+    searchBar: string = 'searchBar'; 
+    
+    constructor(private router: Router) {}
+
+    onSearchButtonClick() {
+      this.router.navigate(['repositories', { username: this.username }]);
+      this.searchEvent.emit(this.username);
+    }
   
     search() {
       this.searchEvent.emit(this.username);
