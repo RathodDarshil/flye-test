@@ -16,12 +16,10 @@
     "moduleResolution": "node",
     "importHelpers": true,
     "esModuleInterop": true,
-    "target": "ES2022",
+    "target": "ES2018", 
     "useDefineForClassFields": false,
-    "lib": [
-      "ES2022",
-      "dom"
-    ]
+    "lib": ["es2018", "dom", "esnext.asynciterable", "scripthost", "es2015"], 
+    "module": "esnext" 
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,

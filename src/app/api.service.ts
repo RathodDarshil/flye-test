@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { CacheService } from '../cache.service';
+import { CacheService } from './cache.service';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable({

@@ -1,12 +1,34 @@
-<div>
-    <ul>
-      <li *ngFor="let repository of repositories">
-        <app-repository-item [repository]="repository"></app-repository-item>
-        <app-skeleton-loader *ngIf="isLoading"></app-skeleton-loader>
-      </li>
-    </ul>
-    <div *ngIf="userNotFound">
-      User not found.
+<div *ngIf="!userNotFound">
+  <div class="bg-white p-6 rounded-lg shadow-lg flex items-center space-x-4">
+    <img
+      [src]="userInfo.avatar_url"
+      alt="User Avatar"
+      class="rounded-full shadow-lg h-32 w-32"
+    />
+
+    <div>
+      <h2 class="text-xl font-semibold">User Details</h2>
+      <p class="text-gray-600">User ID: {{ userInfo.id }}</p>
+      <p>Username: {{ userInfo.login }}</p>
+      <p>Name: {{ userInfo.name }}</p>
+      <p>🔗{{ userInfo.html_url }}</p>
     </div>
   </div>
-  
+
+  <ul class="grid grid-cols-2 gap-4">
+    <li
+      *ngFor="let repository of repositories"
+      class="bg-white p-4 rounded-lg shadow-md"
+    >
+      <app-repository-item
+        [repository]="repository"
+        (repositoryClicked)="handleRepositoryClick($event)"
+      ></app-repository-item>
+    </li>
+  </ul>
+
+  <app-skeleton-loader *ngIf="isLoading"></app-skeleton-loader>
+
+  <div *ngIf="userNotFound">User not found.</div>
+  <router-outlet></router-outlet>
+</div>

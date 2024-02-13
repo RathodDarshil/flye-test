@@ -1,6 +1,4 @@
-
-<div>
-    <h3>{{ repository.name }}</h3>
-    <p>{{ repository.description }}</p>
-  </div>
-  
+<div (click)="onRepositoryClick()">
+  <h3 class="text-lg font-semibold">{{ repository.name }}</h3>
+  <p class="text-gray-600">{{ repository.description }}</p>
+</div>

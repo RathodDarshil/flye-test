@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import './skeleton-loader.component.scss';
+// import './skeleton-loader.component.scss';
 
 @Component({
   selector: 'app-skeleton-loader',
