@@ -21,21 +21,24 @@ export class ApiService {
         name: response.name,
         avatar_url: response.avatar_url,
         html_url: response.html_url,
+        public_repos: response.public_repos,
       }))
     );
   }
 
-  getRepositories(githubUsername: string): Observable<any[]> {
+  getRepositories(
+    githubUsername: string,
+    limit: 6,
+    offset: number = 1
+  ): Observable<any[]> {
     const cacheKey = `repositories_${githubUsername}`;
     const cachedData = this.cacheService.get(cacheKey);
-    if (cachedData) {
-      return of(cachedData);
-    }
 
-    const url = `https://api.github.com/users/${githubUsername}/repos`;
-
+    const url = `https://api.github.com/users/${githubUsername}/repos?per_page=${limit}&page=${offset}`;
+    console.log('herer', url);
     return this.httpClient.get<any[]>(url).pipe(
       map((data) => {
+        console.log({ data });
         this.cacheService.set(cacheKey, data);
         return data;
       }),

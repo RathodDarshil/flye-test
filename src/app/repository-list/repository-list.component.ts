@@ -14,6 +14,9 @@ export class RepositoryListComponent {
   selectedUsername: string = '';
   userInfo: any;
   img: string = '';
+  totalPages = 0;
+  totalReposPerPage: number = 6;
+  currentPage: number = 1;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute) {}
 
@@ -35,19 +38,7 @@ export class RepositoryListComponent {
         });
 
         if (githubUsername) {
-          this.apiService.getRepositories(githubUsername).subscribe({
-            next: (data: any) => {
-              this.repositories = data;
-              this.isLoading = false;
-              this.userNotFound = data.length === 0;
-              console.log('asdasdasd', this.repositories);
-            },
-            error: (error: any) => {
-              console.error(error);
-              this.isLoading = false;
-              this.userNotFound = true;
-            },
-          });
+          this.getData(githubUsername, 0);
         } else {
           console.error('Username not provided in route parameters.');
         }
@@ -56,5 +47,40 @@ export class RepositoryListComponent {
   }
   handleRepositoryClick(clickedRepository: any) {
     console.log('Repository clicked:', clickedRepository);
+  }
+  calculateTotalPages() {
+    console.log('total pages:', this.totalPages);
+    console.log('repository length:', this.userInfo.public_repos);
+    this.totalPages = Math.ceil(
+      this.userInfo.public_repos / this.totalReposPerPage
+    );
+  }
+
+  goToPage(page: number) {
+    this.currentPage = page;
+    console.log(`Navigating to page ${page}`);
+    this.getData(this.selectedUsername, page);
+  }
+  totalPagesArray(): number[] {
+    return Array.from({ length: this.totalPages }, (_, i) => i + 1);
+  }
+
+  getData(githubUsername: string, page: number) {
+    this.repositories = {};
+    this.apiService.getRepositories(githubUsername, 6, page).subscribe({
+      next: (data: any) => {
+        this.repositories = data;
+        this.isLoading = false;
+        this.userNotFound = data.length === 0;
+
+        this.calculateTotalPages();
+        console.log('asdasdasd', this.repositories);
+      },
+      error: (error: any) => {
+        console.error(error);
+        this.isLoading = false;
+        this.userNotFound = true;
+      },
+    });
   }
 }

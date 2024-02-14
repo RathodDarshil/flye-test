@@ -1,4 +1,11 @@
-<div (click)="onRepositoryClick()">
-  <h3 class="text-lg font-semibold">{{ repository.name }}</h3>
+<div (click)="onRepositoryClick()" class="p-4 mb-4">
+  <h3 class="text-lg font-semibold text-black">{{ repository.name }}</h3>
   <p class="text-gray-600">{{ repository.description }}</p>
+  <div class="space-y-2">
+    <ng-template ngFor let-topic [ngForOf]="repository.topics">
+      <p class="bg-blue-500 text-white px-2 py-1 rounded inline-block ml-2">
+        {{ topic }}
+      </p>
+    </ng-template>
+  </div>
 </div>
