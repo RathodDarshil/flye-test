@@ -38,7 +38,7 @@
           },
           "configurations": {
             "production": {
-              "outputPath": "docs/fyle-frontend-challenge",
+              "outputPath": "dist/fyle-frontend-challenge",
               "baseHref": "/fyle-frontend-challenge/",
               "budgets": [
                 {
