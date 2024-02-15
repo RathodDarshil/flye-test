@@ -28,7 +28,7 @@
                         "stylePreprocessorOptions": {
                             "includePaths": ["src/styles", "src/app/skeleton-loader/skeleton-loader.component.scss"]
                         },
-                        "baseHref": "/fyle-frontend-challenge/"
+                        "baseHref": "/"
                     },
                     "configurations": {
                         "production": {
