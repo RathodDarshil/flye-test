@@ -1,120 +1,108 @@
 {
-  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
-  "version": 1,
-  "newProjectRoot": "projects",
-  "projects": {
-    "fyle-frontend-challenge": {
-      "projectType": "application",
-      "schematics": {
-        "@schematics/angular:component": {
-          "style": "scss"
-        }
-      },
-      "root": "src",
-      "sourceRoot": "src",
-      "prefix": "app",
-      "architect": {
-        "build": {
-          "builder": "@angular-devkit/build-angular:browser",
-          "options": {
-            "outputPath": "docs",
-            "index": "src/index.html",
-            "main": "src/main.ts",
-            "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.app.json",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "src/styles.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": [
-                "src/styles",
-                "src/app/skeleton-loader/skeleton-loader.component.scss"
-              ]
-            },
-            "baseHref": "/fyle-frontend-challenge/"
-          },
-          "configurations": {
-            "production": {
-              "outputPath": "dist/fyle-frontend-challenge",
-              "baseHref": "/fyle-frontend-challenge/",
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
-                },
-                {
-                  "type": "anyComponentStyle",
-                  "maximumWarning": "2kb",
-                  "maximumError": "4kb"
+    "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+    "version": 1,
+    "newProjectRoot": "projects",
+    "projects": {
+        "fyle-frontend-challenge": {
+            "projectType": "application",
+            "schematics": {
+                "@schematics/angular:component": {
+                    "style": "scss"
                 }
-              ],
-              "outputHashing": "all"
             },
-            "development": {
-              "buildOptimizer": false,
-              "optimization": false,
-              "vendorChunk": true,
-              "extractLicenses": false,
-              "sourceMap": true,
-              "namedChunks": true,
-              "styles": [
-                "src/styles.scss",
-                "src/app/skeleton-loader/skeleton-loader.component.scss"
-              ]
+            "root": "",
+            "sourceRoot": "src",
+            "prefix": "app",
+            "architect": {
+                "build": {
+                    "builder": "@angular-devkit/build-angular:browser",
+                    "options": {
+                        "outputPath": "dist/fyle-frontend-challenge",
+                        "index": "src/index.html",
+                        "main": "src/main.ts",
+                        "polyfills": ["zone.js"],
+                        "tsConfig": "tsconfig.app.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["src/favicon.ico", "src/assets"],
+                        "styles": ["node_modules/bootstrap/dist/css/bootstrap.min.css", "src/styles.scss"],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/styles", "src/app/skeleton-loader/skeleton-loader.component.scss"]
+                        },
+                        "baseHref": "/fyle-frontend-challenge/"
+                    },
+                    "configurations": {
+                        "production": {
+                            "outputPath": "dist/fyle-frontend-challenge",
+                            "baseHref": "/fyle-frontend-challenge/",
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "500kb",
+                                    "maximumError": "1mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "2kb",
+                                    "maximumError": "4kb"
+                                }
+                            ],
+                            "outputHashing": "all"
+                        },
+                        "development": {
+                            "buildOptimizer": false,
+                            "optimization": false,
+                            "vendorChunk": true,
+                            "extractLicenses": false,
+                            "sourceMap": true,
+                            "namedChunks": true,
+                            "styles": ["src/styles.scss", "src/app/skeleton-loader/skeleton-loader.component.scss"]
+                        }
+                    }
+                },
+                "serve": {
+                    "builder": "@angular-devkit/build-angular:dev-server",
+                    "options": {
+                        "buildTarget": "fyle-frontend-challenge:build"
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "fyle-frontend-challenge:build:production"
+                        },
+                        "development": {
+                            "buildTarget": "fyle-frontend-challenge:build:development"
+                        }
+                    }
+                },
+                "extract-i18n": {
+                    "builder": "@angular-devkit/build-angular:extract-i18n",
+                    "options": {
+                        "buildTarget": "fyle-frontend-challenge:build"
+                    }
+                },
+                "test": {
+                    "builder": "@angular-devkit/build-angular:karma",
+                    "options": {
+                        "polyfills": ["zone.js"],
+                        "tsConfig": "tsconfig.spec.json",
+                        "inlineStyleLanguage": "scss",
+                        "assets": ["src/favicon.ico", "src/assets"],
+                        "styles": ["src/styles.scss", "src/app/skeleton-loader/skeleton-loader.component.scss"],
+                        "stylePreprocessorOptions": {
+                            "includePaths": ["src/styles"]
+                        }
+                    }
+                }
             }
-          }
-        },
-        "serve": {
-          "builder": "@angular-devkit/build-angular:dev-server",
-          "options": {
-            "buildTarget": "fyle-frontend-challenge:build"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "fyle-frontend-challenge:build:production"
-            },
-            "development": {
-              "buildTarget": "fyle-frontend-challenge:build:development"
-            }
-          }
-        },
-        "extract-i18n": {
-          "builder": "@angular-devkit/build-angular:extract-i18n",
-          "options": {
-            "buildTarget": "fyle-frontend-challenge:build"
-          }
-        },
-        "test": {
-          "builder": "@angular-devkit/build-angular:karma",
-          "options": {
-            "polyfills": ["zone.js"],
-            "tsConfig": "tsconfig.spec.json",
-            "inlineStyleLanguage": "scss",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": [
-              "src/styles.scss",
-              "src/app/skeleton-loader/skeleton-loader.component.scss"
-            ],
-            "stylePreprocessorOptions": {
-              "includePaths": ["src/styles"]
-            }
-          }
         }
-      }
+    },
+    "schematics": {
+        "@angular/cli:component": {
+            "spec": {
+                "ts": false
+            }
+        }
+    },
+    "cli": {
+        "analytics": false
     }
-  },
-  "schematics": {
-    "@angular/cli:component": {
-      "spec": {
-        "ts": false
-      }
-    }
-  },
-  "cli": {
-    "analytics": false
-  }
 }
